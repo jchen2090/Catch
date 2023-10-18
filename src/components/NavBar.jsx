@@ -5,8 +5,6 @@ import { useThemeSwitcher } from "../hooks/useThemeSwitcher";
 export const NavBar = () => {
   const [theme, toggleTheme] = useThemeSwitcher();
 
-  console.log(theme);
-
   return (
     <div className="flex justify-end gap-6 py-4 pr-6 bg-slate-50 dark:bg-neutral-800/10 ">
       <a href="https://github.com/jchen2090/matching-game" target="_blank" rel="noreferrer">
