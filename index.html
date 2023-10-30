@@ -1,13 +1,51 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catch</title>
-  </head>
-  <body class="dark:bg-neutral-900">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name=“viewport” content=“width-device-width, initial-scale=1, maximum-scale=1”>
+    <title>Cat-ch Account</title>
+    <meta name="author" content="Daniel Huang">
+    <meta name="description" content="signin">
+    <!--<link rel="icon" type="image/png" href="images/anonymous.png">-->
+    <link href="styles.css" rel="stylesheet">
+    <script src="script.js" async></script>
+</head>
+
+<body>
+   <div class="loginContainer">
+        <div class="inputContainer authenticate">
+            <form action="">
+                <h2>Authenticate</h2>
+
+                    <div class="inputs">
+                        <input type="text" required>
+                        <label for="">Username</label>
+                    </div>
+
+                    <div class="inputs">
+                        <input type="password" required>
+                        <label for="">Password</label>
+                    </div>
+
+                    <div class="checkRemember">
+                        <label><input type="checkbox">&nbsp;Remember me</label>
+                    </div>
+
+                    <button type="submit">Login</button>
+
+                    <div class="makeAccount">
+                        <p>First time? <a href="x" class="signUpLink">Sign Up</a></p> 
+                    </div>
+            </form>
+        </div>
+   </div>
+   
+
+
+
+
+</body>
+
+
 </html>
