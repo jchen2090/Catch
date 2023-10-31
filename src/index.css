@@ -6,4 +6,8 @@
   .btn-primary {
     @apply h-10 px-4 py-2 text-sm text-white rounded-md dark:bg-white bg-slate-950 dark:text-black hover:bg-slate-950/90 dark:hover:bg-white/90;
   }
+
+  .form-input {
+    @apply h-10 rounded-md dark:bg-neutral-800/80 dark:border-0 border-2 border-gray-300 dark:text-white px-3 py-2 text-sm
+  }
 }

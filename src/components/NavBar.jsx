@@ -8,11 +8,11 @@ export const NavBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center justify-between py-4 pr-6 bg-slate-50 dark:bg-neutral-800/10 ">
+    <div className="flex items-center justify-between py-4 pr-6 bg-slate-50 dark:bg-neutral-800/10">
 
       <div className="flex justify-start">
         <Link to="/" className="text-xl font-medium dark:text-white ps-4">
-          Play
+          Catch
         </Link>
       </div>
 
