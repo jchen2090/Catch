@@ -46,6 +46,7 @@ button
     border-radius: 20px;
     box-shadow: 0 0 50px white;
     padding: 40px;
+    overflow: hidden;
 }
 
 .inputs
@@ -62,6 +63,24 @@ button
     justify-content: center;
     width: 100%;
     height: 100%;
+    transition: 1s ease-in-out;
+}
+
+.loginContainer.active .inputContainer.authenticate
+{
+    transform: translateY(-450px);
+}
+
+.loginContainer .inputContainer.authenticate2
+{
+    top: 450px;
+    position: absolute;
+    left: 0;
+}
+
+.loginContainer.active .inputContainer.authenticate2
+{
+    transform: translateY(-450px);
 }
 
 .inputs label
