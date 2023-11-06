@@ -4,7 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 
 export const Login = () => {
   const [state, setState] = useState({ email: "", password: "", error: null });
-  const { login } = useAuth();
+  const { login, handleGuestLogin } = useAuth();
   const navigate = useNavigate();
 
   const handleFormChange = (event) => {
@@ -41,12 +41,15 @@ export const Login = () => {
           Login
         </button>
 
-        <p className="text-center dark:text-white">
+        <div className="text-center dark:text-white">
           First time?{" "}
           <Link to="/signup" className="hover:underline">
             Sign up
           </Link>
-        </p>
+          <p className="mt-1 text-xs italic hover:underline hover:cursor-pointer" onClick={handleGuestLogin}>
+            Or continue as guest
+          </p>
+        </div>
       </form>
     </div>
   );
