@@ -1,12 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import initialCards from "../Cards.json";
 
+const shuffledCards = initialCards.sort(() => Math.random() - 0.5);
+
 export const GameContext = createContext();
 export const GameContextProvider = ({ children }) => {
   const [score, setScore] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
-  const [cards, setCards] = useState(initialCards);
+  const [cards, setCards] = useState(shuffledCards);
 
   const resetChoices = () => {
     setChoiceOne(null);
@@ -25,7 +27,7 @@ export const GameContextProvider = ({ children }) => {
     if (choiceOne.src !== choiceTwo.src) {
       setTimeout(() => {
         resetChoices();
-      }, 500);
+      }, 750);
     } else {
       console.log("Cards do match");
       const updatedCards = cards.map((card) => {
@@ -46,7 +48,8 @@ export const GameContextProvider = ({ children }) => {
   const reset = () => {
     setScore(0);
     resetChoices();
-    setCards(initialCards);
+    // Reshuffles cards
+    setCards(shuffledCards.sort(() => Math.random() - 0.5));
   };
 
   const gameIsComplete = () => {
@@ -54,7 +57,16 @@ export const GameContextProvider = ({ children }) => {
     return unmatchedCards.length === 0;
   };
 
-  const globalFunctions = { cards, score, choiceOne, choiceTwo, increaseScore, reset, handleUserChoice, gameIsComplete };
+  const globalFunctions = {
+    cards,
+    score,
+    choiceOne,
+    choiceTwo,
+    increaseScore,
+    reset,
+    handleUserChoice,
+    gameIsComplete,
+  };
 
   return <GameContext.Provider value={globalFunctions}>{children}</GameContext.Provider>;
 };

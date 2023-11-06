@@ -19,7 +19,7 @@ export const SignUp = () => {
   const handleSignUp = async (event) => {
     event.preventDefault();
     if (state.password !== state.confirmPassword) {
-      //TODO: Create an error box 
+      //TODO: Create an error box
       setState({ ...state, error: "Different passwords" });
     } else {
       try {
@@ -60,9 +60,9 @@ export const SignUp = () => {
         </button>
 
         <div className="text-center dark:text-white">
-          First time?{" "}
-          <Link to="/signup" className="hover:underline">
-            Sign up
+          Already have an account?{" "}
+          <Link to="/Login" className="hover:underline">
+            Login
           </Link>
           <p className="mt-1 text-xs italic hover:underline hover:cursor-pointer" onClick={handleGuestLogin}>
             Or continue as guest
