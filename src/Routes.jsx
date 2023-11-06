@@ -3,9 +3,12 @@ import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { Game } from "./pages/Game";
 import { Error } from "./pages/Error";
+import { useAuth } from "./hooks/useAuth";
 
 export const Routes = () => {
-  const isSignedIn = JSON.parse(localStorage.getItem("isSignedIn")) ?? false;
+  const cachedIsSignedIn = JSON.parse(localStorage.getItem("isSignedIn")) ?? false;
+  const { user } = useAuth();
+  const isSignedIn = cachedIsSignedIn || user !== null;
 
   const allRoutes = [
     {
@@ -18,7 +21,7 @@ export const Routes = () => {
     },
     {
       path: "/",
-      element: isSignedIn ? <Game /> : <Navigate to="/" />,
+      element: isSignedIn ? <Game /> : <Navigate to="/login" />,
     },
     {
       path: "*",
