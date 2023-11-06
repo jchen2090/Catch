@@ -10,10 +10,15 @@ export const Card = ({ imageRef, isFlipped }) => {
 
   //TODO: Add image for front of card
   return (
-    <div className="card" onClick={handleClick}>
-      <p className="absolute">Front</p>
+    <div
+      className={`card  ${
+        !isFlipped ? "[transform:rotateY(0deg)]" : "[transform:rotateY(180deg)]"
+      } [transform-style:preserve-3d] transition-transform duration-1000`}
+      onClick={handleClick}
+    >
+      <p className="absolute ">Front</p>
       <img
-        className={`absolute w-32 h-48 object-cover ${!isFlipped ? "[transform:rotateY(90deg)]" : "[transform:rotateY(0deg)]"}`}
+        className={`absolute w-32 h-48 object-cover transition-transform duration-1000 [transform:rotateY(180deg)] [backface-visibility:hidden]`}
         src={imageRef.src}
         onClick={handleClick}
         alt="Back Card"
