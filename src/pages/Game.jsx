@@ -1,6 +1,14 @@
 import { Grid } from "../components/Grid";
+import { useGameContext } from "../hooks/useGameContext";
 
 export const Game = () => {
+  const { score, reset, gameIsComplete } = useGameContext();
+
+  //TODO: Make proper you win page
+  if (gameIsComplete()) {
+    console.log("You win!!!!");
+  }
+
   return (
     <>
       <div className="mt-6 text-center dark:text-white">
@@ -10,6 +18,10 @@ export const Game = () => {
       <div className="flex justify-center mt-12">
         <Grid />
       </div>
+      <p className="mt-6 text-lg text-center dark:text-white">Score: {score}</p>
+      <button className="self-center mt-4 btn-danger" onClick={reset}>
+        Reset
+      </button>
     </>
   );
 };
