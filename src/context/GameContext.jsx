@@ -23,6 +23,14 @@ export const GameContextProvider = ({ children }) => {
     if (choiceOne === null || choiceTwo === null) {
       return;
     }
+    /* 
+      If the user selects the same card again then it simply flips over
+      This was a bug fix for when the user clicked on the same card again it would instantly solve the pair
+    */
+    if (choiceOne === choiceTwo) {
+      resetChoices();
+      return;
+    }
 
     if (choiceOne.src !== choiceTwo.src) {
       setTimeout(() => {
