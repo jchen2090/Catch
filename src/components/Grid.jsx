@@ -7,7 +7,7 @@ export const Grid = () => {
     Optional Chaining required here since choiceOne and choiceTwo are null on initialization
   */
   return (
-    <div className="grid grid-cols-8 gap-4">
+    <div className="grid grid-cols-4 gap-4 md:grid-cols-8">
       {cards.map((card) => (
         <div onClick={!gameIsComplete() ? increaseScore : null} key={card.id}>
           <Card imageRef={card} isFlipped={card.id === choiceOne?.id || card.id === choiceTwo?.id || card.isMatched} />
