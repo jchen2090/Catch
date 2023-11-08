@@ -12,10 +12,14 @@
   }
 
   .card {
-    @apply flex items-center justify-center w-32 h-48 text-black border-2 border-black border-solid dark:border-white dark:text-white;
+    @apply flex items-center justify-center w-32 h-48 text-black border-black border-solid rounded-lg dark:bg-neutral-700/10 bg-slate-100/80;
   }
 
   .form-input {
     @apply h-10 px-3 py-2 text-sm border-2 border-gray-300 rounded-md dark:bg-neutral-800/80 dark:border-0 dark:text-white;
+  }
+
+  .alert {
+    @apply p-2 text-center border rounded-xl dark:border-rose-500 dark:text-rose-400 border-rose-600 text-rose-600;
   }
 }

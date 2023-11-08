@@ -4,7 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 
 export const Login = () => {
   const [state, setState] = useState({ email: "", password: "", error: null });
-  const { login, handleGuestLogin } = useAuth();
+  const { login, guestLogin } = useAuth();
   const navigate = useNavigate();
 
   const handleFormChange = (event) => {
@@ -17,13 +17,23 @@ export const Login = () => {
       await login(state.email, state.password);
       navigate("/");
     } catch (e) {
-      //TODO: Create error alert
       setState({ ...state, error: "Email or Password incorrect" });
     }
   };
 
+  const handleGuestLogin = async (event) => {
+    event.preventDefault();
+    try {
+      await guestLogin();
+      navigate("/");
+    } catch (e) {
+      setState({ ...state, error: "Trouble signing in, try again later" });
+    }
+  };
+
   return (
-    <div className="flex items-center justify-center flex-1">
+    <div className="flex flex-col items-center justify-center flex-1">
+      {state.error ? <h2 className="alert w-96">{state.error}</h2> : null}
       <form action="" className="flex flex-col h-auto gap-8 p-6 shadow-lg w-96 rounded-2xl dark:bg-neutral-800/10">
         <h2 className="mt-8 text-2xl font-medium text-center dark:text-white">Authenticate</h2>
 
