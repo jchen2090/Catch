@@ -35,9 +35,8 @@ export const GameContextProvider = ({ children }) => {
     if (choiceOne.src !== choiceTwo.src) {
       setTimeout(() => {
         resetChoices();
-      }, 750);
+      }, 500);
     } else {
-      console.log("Cards do match");
       const updatedCards = cards.map((card) => {
         if (card.src === choiceOne.src) {
           return { ...card, isMatched: true };
