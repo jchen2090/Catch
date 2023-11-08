@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 
 export const SignUp = () => {
   const [state, setState] = useState({ email: "", password: "", confirmPassword: "", error: null });
+  const isIncompleteForm = state.email === "" || state.password === "" || state.confirmPassword === "";
   const { guestLogin, signUp } = useAuth();
   const navigate = useNavigate();
 
@@ -19,14 +20,15 @@ export const SignUp = () => {
   const handleSignUp = async (event) => {
     event.preventDefault();
     if (state.password !== state.confirmPassword) {
-      //TODO: Create an error box
-      setState({ ...state, error: "Different passwords" });
+      setState({ ...state, error: "Passwords are not the same" });
+    } else if (isIncompleteForm) {
+      setState({ ...state, error: "Form is incomplete" });
     } else {
       try {
         await signUp(state.email, state.password);
         navigate("/");
       } catch (e) {
-        console.error("Error with signing up");
+        setState({ ...state, error: "Trouble signing up, try again later" });
       }
     }
   };
@@ -36,7 +38,8 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="flex items-center justify-center flex-1">
+    <div className="flex flex-col items-center justify-center flex-1">
+      {state.error ? <h2 className="alert w-96">{state.error}</h2> : null}
       <form action="" className="flex flex-col h-auto gap-8 p-6 shadow-lg w-96 rounded-2xl dark:bg-neutral-800/10">
         <h2 className="mt-8 text-2xl font-medium text-center dark:text-white">Sign Up</h2>
 
