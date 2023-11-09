@@ -3,10 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jchen2090.github.io/Catch/",
+  "homepage": "https://jchen2090.github.io/Catch/#",
   "scripts": {
     "dev": "vite",
-    "deploy": "npm run build && gh-pages -d dist -b release",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -b release",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
