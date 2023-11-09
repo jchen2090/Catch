@@ -9,7 +9,7 @@ export const Card = ({ imageRef, isFlipped }) => {
 
   return (
     <div
-      className={`card [transform-style:preserve-3d] transition-transform duration-500
+      className={`card [transform-style:preserve-3d] transition-transform duration-700
        ${!isFlipped ? "[transform:rotateY(0deg)]" : "[transform:rotateY(180deg)]"} `}
       onClick={handleClick}
     >
