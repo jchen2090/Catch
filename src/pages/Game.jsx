@@ -1,8 +1,28 @@
 import { Grid } from "../components/Grid";
+import { useDb } from "../hooks/useDb";
+import { useAuth } from "../hooks/useAuth";
 import { useGameContext } from "../hooks/useGameContext";
+import { useEffect, useState } from "react";
 
 export const Game = () => {
   const { score, reset, gameIsComplete } = useGameContext();
+  const { writeDoc, readDoc } = useDb();
+  const [bestScore, setBestScore] = useState(null);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const getBestScores = async () => {
+      if (user) {
+        readDoc("bestScores", user.uid).then((data) => setBestScore(data.score));
+      }
+    };
+    getBestScores();
+  }, [user]);
+
+  if (gameIsComplete() && score < bestScore) {
+    writeDoc("bestScores", user.uid, { score: score });
+    setBestScore(score);
+  }
 
   return (
     <>
@@ -16,7 +36,12 @@ export const Game = () => {
       <div className="flex justify-center mt-12">
         <Grid />
       </div>
-      <p className="mt-6 text-lg text-center dark:text-white">Score: {score}</p>
+      <p className="mt-6 text-lg text-center dark:text-white">
+        Best Score (Lower is better): {bestScore ?? "None yet!"}
+      </p>
+      <p className="mt-2 text-lg text-center dark:text-white">
+        Score: {score}
+      </p>
       <button className="self-center mt-4 btn-danger" onClick={reset}>
         Reset
       </button>
