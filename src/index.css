@@ -12,7 +12,7 @@
   }
 
   .card {
-    @apply flex items-center justify-center w-20 text-black border-black border-solid rounded-lg h-28 lg:h-48 lg:w-32 dark:bg-neutral-700/10 bg-slate-100/80;
+    @apply flex items-center justify-center w-20 text-black border-black border-solid rounded-lg cursor-pointer h-28 lg:h-48 lg:w-32 dark:bg-neutral-700/10 bg-slate-100/80;
   }
 
   .form-input {

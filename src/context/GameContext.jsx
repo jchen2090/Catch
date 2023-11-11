@@ -20,22 +20,16 @@ export const GameContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (choiceOne === null || choiceTwo === null) {
-      return;
-    }
-    /* 
-      If the user selects the same card again then it simply flips over
-      This was a bug fix for when the user clicked on the same card again it would instantly solve the pair
-    */
-    if (choiceOne === choiceTwo) {
-      resetChoices();
+    let timer;
+
+    if (choiceOne === null || choiceTwo === null || choiceOne === choiceTwo) {
       return;
     }
 
     if (choiceOne.src !== choiceTwo.src) {
-      setTimeout(() => {
+      timer = setTimeout(() => {
         resetChoices();
-      }, 750);
+      }, 500);
     } else {
       const updatedCards = cards.map((card) => {
         if (card.src === choiceOne.src) {
@@ -46,7 +40,13 @@ export const GameContextProvider = ({ children }) => {
       setCards(updatedCards);
       resetChoices();
     }
-  }, [choiceOne, choiceTwo]);
+
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [choiceOne, choiceTwo, cards]);
 
   const increaseScore = () => {
     setScore((score) => score + 1);
@@ -64,6 +64,13 @@ export const GameContextProvider = ({ children }) => {
     return unmatchedCards.length === 0;
   };
 
+  /*
+    Optional Chaining required here since choiceOne and choiceTwo are null on initialization
+  */
+  const isFlipped = (cardRef) => {
+    return cardRef.isMatched || cardRef.id === choiceOne?.id || cardRef.id === choiceTwo?.id;
+  };
+
   const globalFunctions = {
     cards,
     score,
@@ -73,6 +80,7 @@ export const GameContextProvider = ({ children }) => {
     reset,
     handleUserChoice,
     gameIsComplete,
+    isFlipped,
   };
 
   return <GameContext.Provider value={globalFunctions}>{children}</GameContext.Provider>;

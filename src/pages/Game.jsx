@@ -39,9 +39,7 @@ export const Game = () => {
       <p className="mt-6 text-lg text-center dark:text-white">
         Best Score (Lower is better): {bestScore ?? "None yet!"}
       </p>
-      <p className="mt-2 text-lg text-center dark:text-white">
-        Score: {score}
-      </p>
+      <p className="mt-2 text-lg text-center dark:text-white">Score: {score}</p>
       <button className="self-center mt-4 btn-danger" onClick={reset}>
         Reset
       </button>

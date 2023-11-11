@@ -2,15 +2,13 @@ import { useGameContext } from "../hooks/useGameContext";
 import { Card } from "./Card";
 
 export const Grid = () => {
-  const { increaseScore, choiceOne, choiceTwo, cards, gameIsComplete } = useGameContext();
-  /*
-    Optional Chaining required here since choiceOne and choiceTwo are null on initialization
-  */
+  const { increaseScore, cards, isFlipped } = useGameContext();
+
   return (
     <div className="grid grid-cols-4 gap-4 md:grid-cols-8">
       {cards.map((card) => (
-        <div onClick={!gameIsComplete() ? increaseScore : null} key={card.id}>
-          <Card imageRef={card} isFlipped={card.id === choiceOne?.id || card.id === choiceTwo?.id || card.isMatched} />
+        <div onClick={!isFlipped(card) ? increaseScore : null} key={card.id}>
+          <Card imageRef={card} isFlipped={isFlipped(card)} />
         </div>
       ))}
     </div>
